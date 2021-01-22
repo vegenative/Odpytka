@@ -19,11 +19,19 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/black_bottom_border_tv"
+            android:padding="40dp"
+            android:textAlignment="center"
+            android:text="Wybierz szczegóły odpytki"
+            android:textSize="26sp"
+            android:fontFamily="sans-serif-black"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="32dp"
             android:orientation="horizontal">
 
             <EditText
@@ -38,6 +46,7 @@
             <Button
                 android:id="@+id/button2"
                 android:layout_width="0dp"
+                android:layout_marginLeft="16dp"
                 android:background="@drawable/white_rounded_button"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -66,18 +75,72 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:text="Szczegóły"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:fontFamily="sans-serif-black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
-
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:text="Procent poprawnych odpowiedzi"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-black"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:text="Liczba pytań"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-black"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:text="Ostatnia data pytania"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-black"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="112dp"
+        android:text="Cofnij"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="112dp"
+        android:text="dalej"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
