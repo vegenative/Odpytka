@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "118250133229",
+    "project_id": "odpytka-af57c",
+    "storage_bucket": "odpytka-af57c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118250133229:android:785fb9d59ddc967df59ee4",
+        "android_client_info": {
+          "package_name": "com.oxylane.odpytka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118250133229-449ija7qoe7qtchid4j8bn2l7bnivvva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.oxylane.odpytka",
+            "certificate_hash": "9bfaf862a149249bd76f06df563716a3881d7065"
+          }
+        },
+        {
+          "client_id": "118250133229-sbaa59m9gjua9v4p3vgtps89ifgq0m0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdobnmq-XfogwRbz599ULi9CBgiilMcF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118250133229-sbaa59m9gjua9v4p3vgtps89ifgq0m0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
