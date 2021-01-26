@@ -38,7 +38,7 @@
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/spinnerName"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:ems="10"
                 app:hintText="Wybierz osobę"
