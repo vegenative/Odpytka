@@ -42,7 +42,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
     public String name, lastAnswerDate;
     public Integer maxQuestions=3, doneQuestions;
     public Float percentOfAnswers;
-    public String who;
+
 
 
 
@@ -56,7 +56,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        Intent intent = getIntent();
+
         //hooks
         openNumberPickerDialog = (Button) findViewById(R.id.openNumberSpinner);
         newPerson_btn = (Button) findViewById(R.id.newPerson_btn);
@@ -75,10 +75,9 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         details_tv = (TextView) findViewById(R.id.details_tv);
 
 
-        who = intent.getStringExtra("who");
-
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
+
         // pass value category to the dialog
         Fragment argumentFragment = new DialogAddName();
         Bundle data = new Bundle();
