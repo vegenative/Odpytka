@@ -2,6 +2,7 @@ package com.oxylane.odpytka.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
     private LinearLayout rowDetails1, rowDetails2,rowDetails3;
     private Spinner spinnerName;
 
+
+    private String category;
     // dane do utworzenia pytań
     public String name, lastAnswerDate;
     public Integer maxQuestions=3, doneQuestions;
@@ -71,7 +74,17 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
         details_tv = (TextView) findViewById(R.id.details_tv);
 
+
         who = intent.getStringExtra("who");
+
+        Intent intent = getIntent();
+        category = intent.getStringExtra("category");
+        // pass value category to the dialog
+        Fragment argumentFragment = new DialogAddName();
+        Bundle data = new Bundle();
+        data.putString("category", category);
+        argumentFragment.setArguments(data);
+
 
         //interface
         final FirebaseLoadDone onFirebaseLoadDone;
@@ -81,12 +94,13 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         newPerson_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 openDialogAddName();
             }
         });
 
         //Spinner name
-        nameRef = FirebaseDatabase.getInstance().getReference("Person");
+        nameRef = FirebaseDatabase.getInstance().getReference(category);
 
         nameRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -141,7 +155,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                details_tv.setText("Wybierz osobę, aby wyświetlić szczegóły");
+                details_tv.setText(category);
                 rowDetails1.setVisibility(View.INVISIBLE);
                 rowDetails2.setVisibility(View.INVISIBLE);
                 rowDetails3.setVisibility(View.INVISIBLE);
