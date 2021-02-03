@@ -39,6 +39,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
     public String name, lastAnswerDate;
     public Integer maxQuestions=3, doneQuestions;
     public Float percentOfAnswers;
+    public String who;
 
 
 
@@ -52,6 +53,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        Intent intent = getIntent();
         //hooks
         openNumberPickerDialog = (Button) findViewById(R.id.openNumberSpinner);
         newPerson_btn = (Button) findViewById(R.id.newPerson_btn);
@@ -68,6 +70,8 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         rowDetails3 = (LinearLayout) findViewById(R.id.detailsRow3_tv);
 
         details_tv = (TextView) findViewById(R.id.details_tv);
+
+        who = intent.getStringExtra("who");
 
         //interface
         final FirebaseLoadDone onFirebaseLoadDone;

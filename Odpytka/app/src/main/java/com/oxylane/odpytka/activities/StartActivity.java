@@ -11,7 +11,7 @@ import com.oxylane.odpytka.R;
 
 public class StartActivity extends AppCompatActivity {
 
-    private TextView worker_category_tv;
+    private TextView worker_category_tv, manager_category_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,13 +19,22 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         worker_category_tv = (TextView) findViewById(R.id.worker_category_tv);
-
+        manager_category_tv = (TextView) findViewById(R.id.manager_category_tv);
 
 
         worker_category_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (getApplicationContext(),DetailsActivity.class);
+                intent.putExtra("who", "worker");
+                startActivity(intent);
+            }
+        });
+        manager_category_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (getApplicationContext(),DetailsActivity.class);
+                intent.putExtra("who", "manager");
                 startActivity(intent);
             }
         });
