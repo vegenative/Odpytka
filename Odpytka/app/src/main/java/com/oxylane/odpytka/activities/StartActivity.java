@@ -35,6 +35,7 @@ public class StartActivity extends AppCompatActivity {
                 category = worker_category_tv.getText().toString();
                 intent.putExtra("category",category);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -44,10 +45,11 @@ public class StartActivity extends AppCompatActivity {
                 Intent intent = new Intent (getApplicationContext(),DetailsActivity.class);
 
 
-                category = worker_category_tv.getText().toString();
+                category = manager_category_tv.getText().toString();
                 intent.putExtra("category",category);
 
                 startActivity(intent);
+                finish();
             }
         });
 

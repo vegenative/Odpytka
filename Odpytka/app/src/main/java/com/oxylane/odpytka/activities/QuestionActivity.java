@@ -18,12 +18,12 @@ public class QuestionActivity extends AppCompatActivity {
 
     TextView questionText;
     TextView answerText;
-    TextView numberOfHowManyText;
+    TextView maxQuestionsText;
     Button goodButton;
     Button badButton;
     Button backButton;
-    int numberOfHowMany =5;
-    int numberOfQuestion =0;
+    int maxQuestions =5;
+    int doneQuestions =0;
     int licz=1;
     int numberOfGood = 0;
     List<Integer> goodOrBadList;
@@ -34,7 +34,7 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        numberOfHowManyText = findViewById(R.id.numberOfHowManyText);
+        maxQuestionsText = findViewById(R.id.numberOfHowManyText);
         questionText = findViewById(R.id.questionText);
         answerText = findViewById(R.id.answerText);
         goodButton = findViewById(R.id.goodButton);
@@ -43,14 +43,19 @@ public class QuestionActivity extends AppCompatActivity {
         goodOrBadList = new ArrayList<Integer>();
 
         Questions questionsAndAnswers = new Questions();
-      final  ArrayList<String> questions = questionsAndAnswers.getList(numberOfHowMany);
-        questionText.setText(questions.get(numberOfQuestion));
-        setQuestion(questions,numberOfQuestion);
+      final  ArrayList<String> questions = questionsAndAnswers.getList(maxQuestions);
+        questionText.setText(questions.get(doneQuestions));
+        setQuestion(questions, doneQuestions);
 
         goodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(licz==numberOfHowMany){
+
+                //get number of questions
+                Intent previousIntent = getIntent();
+                maxQuestions = previousIntent.getIntExtra("maxQuestions",3);
+
+                if(licz== maxQuestions){
                     goodOrBadList.add(1);
                     Intent intent = new Intent (getApplicationContext(),SummaryActivity.class);
 
@@ -62,16 +67,16 @@ public class QuestionActivity extends AppCompatActivity {
                     
                     
                     intent.putExtra("good",numberOfGood);
-                    intent.putExtra("howMany", numberOfHowMany);
+                    intent.putExtra("maxQuestions", maxQuestions);
                     startActivity(intent);
                 }else {
-                    numberOfQuestion += 2;
+                    doneQuestions += 2;
                     licz += 1;
 
 
                     goodOrBadList.add(1);
 
-                    setQuestion(questions, numberOfQuestion);
+                    setQuestion(questions, doneQuestions);
                 }
             }
         });
@@ -79,7 +84,7 @@ public class QuestionActivity extends AppCompatActivity {
         badButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(licz==numberOfHowMany){
+                if(licz== maxQuestions){
                     goodOrBadList.add(0);
                     Intent intent = new Intent (getApplicationContext(),SummaryActivity.class);
 
@@ -91,13 +96,13 @@ public class QuestionActivity extends AppCompatActivity {
 
 
                     intent.putExtra("good",numberOfGood);
-                    intent.putExtra("howMany", numberOfHowMany);
+                    intent.putExtra("maxQuestions", maxQuestions);
                     startActivity(intent);
                 }else {
-                    numberOfQuestion += 2;
+                    doneQuestions += 2;
                     licz += 1;
                     goodOrBadList.add(0);
-                    setQuestion(questions, numberOfQuestion);
+                    setQuestion(questions, doneQuestions);
                 }
             }
         });
@@ -110,9 +115,9 @@ public class QuestionActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else {
                     licz-=1;
-                    numberOfQuestion-=2;
+                    doneQuestions -=2;
                     goodOrBadList.remove(goodOrBadList.size()-1);
-                    setQuestion(questions,numberOfQuestion);
+                    setQuestion(questions, doneQuestions);
                 }
 
             }
@@ -125,6 +130,6 @@ public class QuestionActivity extends AppCompatActivity {
     public void setQuestion (ArrayList<String> questions, int numberOfQuestion){
         questionText.setText(questions.get(numberOfQuestion));
         answerText.setText(questions.get(numberOfQuestion+1));
-        numberOfHowManyText.setText(licz +"/"+ numberOfHowMany);
+        maxQuestionsText.setText(licz +"/"+ maxQuestions);
     }
 }
