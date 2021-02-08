@@ -180,6 +180,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
                 userIdKey = person.getUserIdKey();
 
 
+
                 if(doneQuestions == null){
                     details_tv.setText("Podana osoba jeszcze nie została odpytana");
                     rowDetails1.setVisibility(View.INVISIBLE);

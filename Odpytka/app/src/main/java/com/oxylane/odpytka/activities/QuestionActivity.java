@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.oxylane.odpytka.Questions;
+import com.oxylane.odpytka.QuestionsManager;
 import com.oxylane.odpytka.R;
 
 import java.util.ArrayList;
@@ -23,10 +24,20 @@ public class QuestionActivity extends AppCompatActivity {
     Button badButton;
     Button backButton;
     int maxQuestions =5;
-    int doneQuestions =0;
+    int doneQuestions;
     int licz=1;
     int numberOfGood = 0;
     List<Integer> goodOrBadList;
+    String category;
+    QuestionsManager questionsAndAnswersM = null;
+    Questions questionsAndAnswers = null;
+    ArrayList<String> questions;
+
+
+    // dane do utworzenia pytań
+    private String name, lastAnswerDate, userIdKey;
+
+    private Float percentOfAnswers;
 
 
     @Override
@@ -42,22 +53,51 @@ public class QuestionActivity extends AppCompatActivity {
         backButton = findViewById(R.id.backButton);
         goodOrBadList = new ArrayList<Integer>();
 
-        Questions questionsAndAnswers = new Questions();
-      final  ArrayList<String> questions = questionsAndAnswers.getList(maxQuestions);
-        questionText.setText(questions.get(doneQuestions));
+
+        Intent intent = getIntent();
+
+        name = intent.getStringExtra("name");
+        doneQuestions = intent.getIntExtra("doneQuestions",0);
+        userIdKey = intent.getStringExtra("userIdKey");
+
+        //get number of questions
+        Intent previousIntent = getIntent();
+        maxQuestions = previousIntent.getIntExtra("maxQuestions",3);
+        category = previousIntent.getStringExtra("category");
+
+
+
+        if (category.equals("Dyżurny"))
+        {
+            questionsAndAnswersM = new QuestionsManager();
+            questions = questionsAndAnswersM.getList(maxQuestions);
+
+        }
+        else
+         {
+            questionsAndAnswers = new Questions();
+            questions = questionsAndAnswers.getList(maxQuestions);
+
+         }
+
+
         setQuestion(questions, doneQuestions);
 
         goodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //get number of questions
-                Intent previousIntent = getIntent();
-                maxQuestions = previousIntent.getIntExtra("maxQuestions",3);
+
 
                 if(licz== maxQuestions){
                     goodOrBadList.add(1);
                     Intent intent = new Intent (getApplicationContext(),SummaryActivity.class);
+                    intent.putExtra("category",category);
+                    intent.putExtra("maxQuestions",maxQuestions);
+                    intent.putExtra("doneQuestions",doneQuestions);
+                    intent.putExtra("percentOfAnswers",percentOfAnswers);
+                    intent.putExtra("name",name);
+                    intent.putExtra("userIdKey",userIdKey);
 
                     for (Integer x: goodOrBadList) {
                         if(x==1){
@@ -87,6 +127,12 @@ public class QuestionActivity extends AppCompatActivity {
                 if(licz== maxQuestions){
                     goodOrBadList.add(0);
                     Intent intent = new Intent (getApplicationContext(),SummaryActivity.class);
+                    intent.putExtra("category",category);
+                    intent.putExtra("maxQuestions",maxQuestions);
+                    intent.putExtra("doneQuestions",doneQuestions);
+                    intent.putExtra("percentOfAnswers",percentOfAnswers);
+                    intent.putExtra("name",name);
+                    intent.putExtra("userIdKey",userIdKey);
 
                     for (Integer x: goodOrBadList) {
                         if(x==1){
@@ -111,7 +157,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(licz==1){
-                    Intent intent = new Intent (getApplicationContext(),DetailsActivity.class);
+                    Intent intent = new Intent (getApplicationContext(),StartActivity.class);
                     startActivity(intent);
                 }else {
                     licz-=1;

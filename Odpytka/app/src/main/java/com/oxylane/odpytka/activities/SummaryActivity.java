@@ -13,6 +13,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.oxylane.odpytka.Person;
 import com.oxylane.odpytka.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 public class SummaryActivity extends AppCompatActivity {
@@ -22,11 +25,12 @@ public class SummaryActivity extends AppCompatActivity {
     int good;
 
     // dane do utworzenia pytań
-    private String name, lastAnswerDate,category, postId;
+    private String name, lastAnswerDate,category, userIdKey;
     private Integer maxQuestions, doneQuestions;
     private Float percentOfAnswers;
 
     TextView percentText;
+    TextView endText;
 
     Button endButton;
 
@@ -41,6 +45,7 @@ public class SummaryActivity extends AppCompatActivity {
 
 
         percentText = findViewById(R.id.percentText);
+        endText = findViewById(R.id.endText);
         endButton = findViewById(R.id.endButton);
 
         Intent intent = getIntent();
@@ -48,20 +53,28 @@ public class SummaryActivity extends AppCompatActivity {
         name = intent.getStringExtra("name");
         doneQuestions = intent.getIntExtra("doneQuestions",0);
         good = intent.getIntExtra("good",0);
-        postId = intent.getStringExtra("postId");
+        userIdKey = intent.getStringExtra("userIdKey");
+        category = intent.getStringExtra("category");
+
+        lastAnswerDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
         percent=(good * 100) / maxQuestions;
 
+        percentOfAnswers = (float) percent;
+        endText.setText("Odpytka osoby "+name+" zakończona");
         percentText.setText(percent+"%");
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference(category).child(name);
+        reference = firebaseDatabase.getReference(category).child(userIdKey);
 
-        Person model = new Person();
-        model.setLastAnswerDate(lastAnswerDate);
-        model.setNumberOfQuestions(doneQuestions);
-        model.setPercentOfAnswers(percentOfAnswers);
-
+       // Person model = new Person(percentOfAnswers,doneQuestions,lastAnswerDate);
+//        model.setLastAnswerDate(lastAnswerDate);
+//        model.setNumberOfQuestions(doneQuestions);
+//        model.setPercentOfAnswers(percentOfAnswers);
+       // reference.setValue(model);
+        reference.child("percent").setValue(percentOfAnswers);
+        reference.child("doneQuestion").setValue(doneQuestions);
+        reference.child("date").setValue(lastAnswerDate);
 
 
 
