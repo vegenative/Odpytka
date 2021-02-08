@@ -6,15 +6,18 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,24 +34,25 @@ import java.util.List;
 
 public class DetailsActivity extends AppCompatActivity implements DialogNumberPicker.numberPickerListener, FirebaseLoadDone {
 
-    private Button openNumberPickerDialog,newPerson_btn,back_btn;
+    private Button openNumberPickerDialog,newPerson_btn,back_btn, add_btn, next_btn;
     private TextView percentageOfAnswers_tv, doneQuestions_tv,lastAnswerData_tv,details_tv;
+    private EditText  addNewPerson_et;
     private LinearLayout rowDetails1, rowDetails2,rowDetails3;
     private Spinner spinnerName;
 
-
-    private String category;
     // dane do utworzenia pytań
-    public String name, lastAnswerDate;
-    public Integer maxQuestions=3, doneQuestions;
-    public Float percentOfAnswers;
+    private String name, lastAnswerDate,category, userIdKey;
+    private Integer maxQuestions=3, doneQuestions;
+    private Float percentOfAnswers;
 
-
-
+    //database
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference nameRef; // referencja Firebase
 
     private List<Person> people;
+    private List<String> idKeyList;
 
-    private DatabaseReference nameRef; // referencja Firebase
+
 
 
     @Override
@@ -61,28 +65,29 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         openNumberPickerDialog = (Button) findViewById(R.id.openNumberSpinner);
         newPerson_btn = (Button) findViewById(R.id.newPerson_btn);
         back_btn = (Button) findViewById(R.id.back_btn);
+        next_btn = (Button) findViewById(R.id.next_btn);
+        add_btn = (Button) findViewById(R.id.add_btn);
+        add_btn.setVisibility(View.GONE);
 
         spinnerName = (Spinner) findViewById(R.id.spinnerName);
 
         percentageOfAnswers_tv = (TextView) findViewById(R.id.percentData_tv);
         doneQuestions_tv = (TextView) findViewById(R.id.numberOfQuestions_tv);
         lastAnswerData_tv = (TextView) findViewById(R.id.lastAnswerData);
+        details_tv = (TextView) findViewById(R.id.details_tv);
+
+        addNewPerson_et = (EditText) findViewById(R.id.addPerson_et);
 
         rowDetails1 = (LinearLayout) findViewById(R.id.detailsRow1_tv);
         rowDetails2 = (LinearLayout) findViewById(R.id.detailsRow2_tv);
         rowDetails3 = (LinearLayout) findViewById(R.id.detailsRow3_tv);
 
-        details_tv = (TextView) findViewById(R.id.details_tv);
 
 
+
+        // get category from previous activity
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
-
-        // pass value category to the dialog
-        Fragment argumentFragment = new DialogAddName();
-        Bundle data = new Bundle();
-        data.putString("category", category);
-        argumentFragment.setArguments(data);
 
 
         //interface
@@ -95,6 +100,39 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
             public void onClick(View v) {
 
                 openDialogAddName();
+                add_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        firebaseDatabase = FirebaseDatabase.getInstance();
+                        nameRef = firebaseDatabase.getReference(category);
+
+                        String name = addNewPerson_et.getText().toString().trim();
+                        //String name = text.replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1 $2");
+
+                        if(name.isEmpty()){
+                            addNewPerson_et.setError("Pole nie może być puste");
+                        }
+                        else{
+
+                            DatabaseReference idKeyRef = nameRef.push();
+                            userIdKey = idKeyRef.getKey();
+
+                            //adding new Person to database
+                            Person addNewPerson = new Person(name,userIdKey);
+                            nameRef.child(userIdKey).setValue(addNewPerson);
+                            //nameRef.push().setValue(addNewPerson);
+
+                            //Toast
+                            Toast.makeText(getApplicationContext(),"Pomyślnie dodano nową osobę do kategorii " + category, Toast.LENGTH_LONG).show();
+
+                            //refresh app
+                            Intent intent = getIntent();
+                            finish();
+                            startActivity(intent);
+                        }
+
+                    }
+                });
             }
         });
 
@@ -104,11 +142,18 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         nameRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 List<Person> people = new ArrayList<>();
+                //List<String> idKeyList = new ArrayList<>(); //lista id key
+
                 for(DataSnapshot personSnapShot:snapshot.getChildren()){
                     people.add(personSnapShot.getValue(Person.class));
+
+                    //String key = personSnapShot.getRef().getKey();
+                    //idKeyList.add(key);// get Id key to the list == null??
                 }
                 onFirebaseLoadDone.OnFirebaseLoadSuccess(people);
+
 
             }
 
@@ -125,11 +170,15 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
                 //pobieramy wybraną pozycje z listy
                 Person person = people.get(position);
 
+                //userIdKey = idKeyList.get(position);  // get idKey of spinner position
+
 
                 percentOfAnswers = person.getPercentOfAnswers();
                 doneQuestions = person.getNumberOfQuestions();
                 lastAnswerDate = person.getLastAnswerDate();
                 name = person.getName();
+                userIdKey = person.getUserIdKey();
+
 
                 if(doneQuestions == null){
                     details_tv.setText("Podana osoba jeszcze nie została odpytana");
@@ -154,7 +203,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                details_tv.setText(category);
+                details_tv.setText("Wybierz osobę, aby poznać szczegóły");
                 rowDetails1.setVisibility(View.INVISIBLE);
                 rowDetails2.setVisibility(View.INVISIBLE);
                 rowDetails3.setVisibility(View.INVISIBLE);
@@ -162,12 +211,30 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
             }
         });
 
-
         // number picker Dialog
         openNumberPickerDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openDialogNumberPicker();
+
+            }
+        });
+
+        //next Activity
+        next_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),QuestionActivity.class);
+                intent.putExtra("category",category);
+                intent.putExtra("maxQuestions",maxQuestions);
+                intent.putExtra("doneQuestions",doneQuestions);
+                intent.putExtra("percentOfAnswers",percentOfAnswers);
+                intent.putExtra("name",name);
+                intent.putExtra("userIdKey",userIdKey);
+
+
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -185,10 +252,22 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
 
 
-    //add new person Dialog
+    //add new person
     private void openDialogAddName() {
-        DialogAddName dialogAddName = new DialogAddName();
-        dialogAddName.show(getSupportFragmentManager(),"addName");
+        if(spinnerName.getVisibility()==View.VISIBLE){
+
+            addNewPerson_et.setVisibility(View.VISIBLE);
+            add_btn.setVisibility(View.VISIBLE);
+            spinnerName.setVisibility(View.GONE);
+            newPerson_btn.setText("-");
+
+        }
+        else{
+            addNewPerson_et.setVisibility(View.GONE);
+            add_btn.setVisibility(View.GONE);
+            spinnerName.setVisibility(View.VISIBLE);
+            newPerson_btn.setText("+");
+        }
     }
 
     //number picker Dialog

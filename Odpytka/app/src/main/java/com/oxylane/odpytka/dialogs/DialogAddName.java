@@ -75,8 +75,8 @@ public class DialogAddName extends AppCompatDialogFragment {
                         //String name = text.replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1 $2");
 
                         //adding new Person to database
-                        Person addNewPerson = new Person(name);
-                        reference.push().setValue(addNewPerson);
+                        //Person addNewPerson = new Person(name);
+                        //reference.push().setValue(addNewPerson);
                     }
                 });
         return builder.create();

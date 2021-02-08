@@ -1,10 +1,10 @@
 package com.oxylane.odpytka;
 
 public class Person {
-    private String name;
+    private String name,lastAnswerDate,userIdKey;
     private Float percentOfAnswers;
     private Integer numberOfQuestions;
-    private String lastAnswerDate;
+
 
 
     //constructor
@@ -14,6 +14,11 @@ public class Person {
 
     public Person(String name) {
         this.name = name;
+    }
+
+    public Person(String name, String userIdKey) {
+        this.name = name;
+        this.userIdKey = userIdKey;
     }
 
     public Person(Float percentOfAnswers, Integer numberOfQuestions, String lastAnswerDate) {
@@ -62,5 +67,13 @@ public class Person {
 
     public void setLastAnswerDate(String lastAnswerDate) {
         this.lastAnswerDate = lastAnswerDate;
+    }
+
+    public String getUserIdKey() {
+        return userIdKey;
+    }
+
+    public void setUserIdKey(String userIdKey) {
+        this.userIdKey = userIdKey;
     }
 }
