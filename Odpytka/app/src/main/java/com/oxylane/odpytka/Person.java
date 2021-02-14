@@ -3,7 +3,7 @@ package com.oxylane.odpytka;
 public class Person {
     private String name,lastAnswerDate,userIdKey;
     private Float percentOfAnswers;
-    private Integer numberOfQuestions;
+    private Integer doneQuestions;
 
 
 
@@ -19,18 +19,19 @@ public class Person {
     public Person(String name, String userIdKey) {
         this.name = name;
         this.userIdKey = userIdKey;
+
     }
 
-    public Person(Float percentOfAnswers, Integer numberOfQuestions, String lastAnswerDate) {
+    public Person(Float percentOfAnswers, Integer doneQuestions, String lastAnswerDate) {
         this.percentOfAnswers = percentOfAnswers;
-        this.numberOfQuestions = numberOfQuestions;
+        this.doneQuestions = doneQuestions;
         this.lastAnswerDate = lastAnswerDate;
     }
 
-    public Person(String name, Float percentOfAnswers, Integer numberOfQuestions, String lastAnswerDate) {
+    public Person(String name, Float percentOfAnswers, Integer doneQuestions, String lastAnswerDate) {
         this.name = name;
         this.percentOfAnswers = percentOfAnswers;
-        this.numberOfQuestions = numberOfQuestions;
+        this.doneQuestions = doneQuestions;
         this.lastAnswerDate = lastAnswerDate;
     }
 
@@ -53,12 +54,12 @@ public class Person {
         this.percentOfAnswers = percentOfAnswers;
     }
 
-    public Integer getNumberOfQuestions() {
-        return numberOfQuestions;
+    public Integer getDoneQuestions() {
+        return doneQuestions;
     }
 
-    public void setNumberOfQuestions(Integer numberOfQuestions) {
-        this.numberOfQuestions = numberOfQuestions;
+    public void setDoneQuestions(Integer doneQuestions) {
+        this.doneQuestions = doneQuestions;
     }
 
     public String getLastAnswerDate() {

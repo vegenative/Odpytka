@@ -32,11 +32,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/text_view_border_bottom_black_lightcolor"
-            android:padding="80dp"
-            android:textSize="24sp"
             android:fontFamily="sans-serif-black"
+            android:padding="80dp"
+            android:text="Pracownik"
             android:textAlignment="center"
-            android:text="Pracownik" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/manager_category_tv"

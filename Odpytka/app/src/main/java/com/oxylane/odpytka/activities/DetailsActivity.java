@@ -35,7 +35,7 @@ import java.util.List;
 public class DetailsActivity extends AppCompatActivity implements DialogNumberPicker.numberPickerListener, FirebaseLoadDone {
 
     private Button openNumberPickerDialog,newPerson_btn,back_btn, add_btn, next_btn;
-    private TextView percentageOfAnswers_tv, doneQuestions_tv,lastAnswerData_tv,details_tv;
+    private TextView percentageOfAnswers_tv, doneQuestions_tv,lastAnswerData_tv,details_tv,info_tv;
     private EditText  addNewPerson_et;
     private LinearLayout rowDetails1, rowDetails2,rowDetails3;
     private Spinner spinnerName;
@@ -50,7 +50,6 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
     private DatabaseReference nameRef; // referencja Firebase
 
     private List<Person> people;
-    private List<String> idKeyList;
 
 
 
@@ -75,6 +74,8 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         doneQuestions_tv = (TextView) findViewById(R.id.numberOfQuestions_tv);
         lastAnswerData_tv = (TextView) findViewById(R.id.lastAnswerData);
         details_tv = (TextView) findViewById(R.id.details_tv);
+        info_tv = (TextView) findViewById(R.id.info_tv);
+
 
         addNewPerson_et = (EditText) findViewById(R.id.addPerson_et);
 
@@ -88,6 +89,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         // get category from previous activity
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
+        info_tv.setText("Wybierz szczegóły odpytki kategorii "+ category);
 
 
         //interface
@@ -120,7 +122,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
                             //adding new Person to database
                             Person addNewPerson = new Person(name,userIdKey);
                             nameRef.child(userIdKey).setValue(addNewPerson);
-                            //nameRef.push().setValue(addNewPerson);
+
 
                             //Toast
                             Toast.makeText(getApplicationContext(),"Pomyślnie dodano nową osobę do kategorii " + category, Toast.LENGTH_LONG).show();
@@ -144,13 +146,10 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 List<Person> people = new ArrayList<>();
-                //List<String> idKeyList = new ArrayList<>(); //lista id key
 
                 for(DataSnapshot personSnapShot:snapshot.getChildren()){
                     people.add(personSnapShot.getValue(Person.class));
 
-                    //String key = personSnapShot.getRef().getKey();
-                    //idKeyList.add(key);// get Id key to the list == null??
                 }
                 onFirebaseLoadDone.OnFirebaseLoadSuccess(people);
 
@@ -174,14 +173,14 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
 
                 percentOfAnswers = person.getPercentOfAnswers();
-                doneQuestions = person.getNumberOfQuestions();
+                doneQuestions = person.getDoneQuestions();
                 lastAnswerDate = person.getLastAnswerDate();
                 name = person.getName();
                 userIdKey = person.getUserIdKey();
 
 
 
-                if(doneQuestions == null){
+                if(lastAnswerDate == null){
                     details_tv.setText("Podana osoba jeszcze nie została odpytana");
                     rowDetails1.setVisibility(View.INVISIBLE);
                     rowDetails2.setVisibility(View.INVISIBLE);
@@ -195,7 +194,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
                     details_tv.setText("Szczegóły "+ name);
                     percentageOfAnswers_tv.setText(percentOfAnswers.toString()+"%");
-                    doneQuestions_tv.setText(doneQuestions.toString());
+                    doneQuestions_tv.setText(doneQuestions.toString()); //zwraca null
                     lastAnswerData_tv.setText(lastAnswerDate);
                 }
 

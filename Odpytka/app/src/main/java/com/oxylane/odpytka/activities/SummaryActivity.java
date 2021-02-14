@@ -56,11 +56,12 @@ public class SummaryActivity extends AppCompatActivity {
         userIdKey = intent.getStringExtra("userIdKey");
         category = intent.getStringExtra("category");
 
+        //data
         lastAnswerDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-
+        // percent of answers
         percent=(good * 100) / maxQuestions;
-
         percentOfAnswers = (float) percent;
+
         endText.setText("Odpytka osoby "+name+" zakończona");
         percentText.setText(percent+"%");
 
@@ -72,9 +73,9 @@ public class SummaryActivity extends AppCompatActivity {
 //        model.setNumberOfQuestions(doneQuestions);
 //        model.setPercentOfAnswers(percentOfAnswers);
        // reference.setValue(model);
-        reference.child("percent").setValue(percentOfAnswers);
-        reference.child("doneQuestion").setValue(doneQuestions);
-        reference.child("date").setValue(lastAnswerDate);
+        reference.child("percentOfAnswers").setValue(percentOfAnswers);
+        reference.child("doneQuestions").setValue(doneQuestions);
+        reference.child("lastAnswerDate").setValue(lastAnswerDate);
 
 
 
@@ -83,6 +84,7 @@ public class SummaryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent (getApplicationContext(),StartActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

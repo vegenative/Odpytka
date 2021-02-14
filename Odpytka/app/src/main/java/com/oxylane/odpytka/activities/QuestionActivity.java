@@ -24,7 +24,9 @@ public class QuestionActivity extends AppCompatActivity {
     Button badButton;
     Button backButton;
     int maxQuestions =5;
+    //co to?
     int doneQuestions;
+
     int licz=1;
     int numberOfGood = 0;
     List<Integer> goodOrBadList;
@@ -56,18 +58,19 @@ public class QuestionActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        // get data from previous Activity
         name = intent.getStringExtra("name");
         doneQuestions = intent.getIntExtra("doneQuestions",0);
         userIdKey = intent.getStringExtra("userIdKey");
-
-        //get number of questions
-        Intent previousIntent = getIntent();
-        maxQuestions = previousIntent.getIntExtra("maxQuestions",3);
-        category = previousIntent.getStringExtra("category");
+        maxQuestions = getIntent().getIntExtra("maxQuestions",3);
+        category = getIntent().getStringExtra("category");
 
 
 
-        if (category.equals("Dyżurny"))
+
+
+
+        if (category.equals("Pracownik"))
         {
             questionsAndAnswersM = new QuestionsManager();
             questions = questionsAndAnswersM.getList(maxQuestions);
@@ -81,6 +84,7 @@ public class QuestionActivity extends AppCompatActivity {
          }
 
 
+        //co to?
         setQuestion(questions, doneQuestions);
 
         goodButton.setOnClickListener(new View.OnClickListener() {
@@ -173,9 +177,9 @@ public class QuestionActivity extends AppCompatActivity {
 
 
     }
-    public void setQuestion (ArrayList<String> questions, int numberOfQuestion){
-        questionText.setText(questions.get(numberOfQuestion));
-        answerText.setText(questions.get(numberOfQuestion+1));
+    public void setQuestion (ArrayList<String> questions, int numberOfQuestions){
+        questionText.setText(questions.get(numberOfQuestions));
+        answerText.setText(questions.get(numberOfQuestions+1));
         maxQuestionsText.setText(licz +"/"+ maxQuestions);
     }
 }
