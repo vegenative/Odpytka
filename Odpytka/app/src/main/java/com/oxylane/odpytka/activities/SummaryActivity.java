@@ -62,7 +62,7 @@ public class SummaryActivity extends AppCompatActivity {
         percent=(good * 100) / maxQuestions;
         percentOfAnswers = (float) percent;
 
-        endText.setText("Odpytka osoby "+name+" zakończona");
+        endText.setText("Odpytka osoby "+ name +" zakończona");
         percentText.setText(percent+"%");
 
         firebaseDatabase = FirebaseDatabase.getInstance();

@@ -2,12 +2,15 @@ package com.oxylane.odpytka.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,6 +31,8 @@ import com.oxylane.odpytka.Person;
 import com.oxylane.odpytka.dialogs.DialogAddName;
 import com.oxylane.odpytka.dialogs.DialogNumberPicker;
 import com.oxylane.odpytka.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -194,7 +199,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
                     details_tv.setText("Szczegóły "+ name);
                     percentageOfAnswers_tv.setText(percentOfAnswers.toString()+"%");
-                    doneQuestions_tv.setText(doneQuestions.toString()); //zwraca null
+                    doneQuestions_tv.setText(doneQuestions.toString());
                     lastAnswerData_tv.setText(lastAnswerDate);
                 }
 
@@ -224,17 +229,33 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),QuestionActivity.class);
-                intent.putExtra("category",category);
-                intent.putExtra("maxQuestions",maxQuestions);
-                intent.putExtra("doneQuestions",doneQuestions);
-                intent.putExtra("percentOfAnswers",percentOfAnswers);
-                intent.putExtra("name",name);
-                intent.putExtra("userIdKey",userIdKey);
+
+                // naprawić
+
+                spinnerName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(getApplicationContext(),QuestionActivity.class);
+                        intent.putExtra("category",category);
+                        intent.putExtra("maxQuestions",maxQuestions);
+                        intent.putExtra("doneQuestions",doneQuestions);
+                        intent.putExtra("percentOfAnswers",percentOfAnswers);
+                        intent.putExtra("name",name);
+                        intent.putExtra("userIdKey",userIdKey);
+
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        Toast.makeText(getApplicationContext(),"Musisz najpierw wybrać osobę do odpytki",Toast.LENGTH_SHORT).show();
+                        spinnerName.setPopupBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.text_view_border_bottom_red));
+                    }
+                });
 
 
-                startActivity(intent);
-                finish();
+
             }
         });
 
@@ -256,17 +277,17 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
     private void openDialogAddName() {
         if(spinnerName.getVisibility()==View.VISIBLE){
 
+            rotateAnimation(newPerson_btn,"-");
             addNewPerson_et.setVisibility(View.VISIBLE);
             add_btn.setVisibility(View.VISIBLE);
             spinnerName.setVisibility(View.GONE);
-            newPerson_btn.setText("-");
 
         }
         else{
+            rotateAnimation(newPerson_btn,"+");
             addNewPerson_et.setVisibility(View.GONE);
             add_btn.setVisibility(View.GONE);
             spinnerName.setVisibility(View.VISIBLE);
-            newPerson_btn.setText("+");
         }
     }
 
@@ -301,5 +322,34 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
     @Override
     public void OnFirebaseLoadFailed(String msg) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    //animation
+    private void rotateAnimation(final Button button, final String text){
+
+        final Animation rotateAnim = new RotateAnimation(0,360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        rotateAnim.setDuration(500);
+
+        button.startAnimation(rotateAnim);
+
+        rotateAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                animation.setFillAfter(true);
+                button.setText(text);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+
+        });
     }
 }
