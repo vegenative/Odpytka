@@ -62,7 +62,12 @@ public class SummaryActivity extends AppCompatActivity {
         lastAnswerDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         // percent of answers
         percent=(good * 100) / maxQuestions;
-        percentOfAnswers = ((float) percent + percentOfAnswersAll)/2;
+        if(percentOfAnswersAll!=0) {
+            percentOfAnswers = ((float) percent + percentOfAnswersAll) / 2;
+        }
+        else {
+            percentOfAnswers = (float) percent;
+        }
 
         endText.setText("Odpytka osoby "+name+" zakończona");
         percentText.setText(percent+"%");
