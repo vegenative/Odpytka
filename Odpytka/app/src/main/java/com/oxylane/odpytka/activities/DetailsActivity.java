@@ -230,8 +230,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                
                         if(name != null){
                             Intent intent = new Intent(getApplicationContext(),QuestionActivity.class);
                             intent.putExtra("category",category);

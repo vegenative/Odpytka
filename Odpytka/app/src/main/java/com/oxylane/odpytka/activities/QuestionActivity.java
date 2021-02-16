@@ -26,6 +26,7 @@ public class QuestionActivity extends AppCompatActivity {
     int maxQuestions =5;
     //co to?
     int doneQuestions;
+    int doneQuestionsAll;
 
     int licz=1;
     int numberOfGood = 0;
@@ -39,7 +40,7 @@ public class QuestionActivity extends AppCompatActivity {
     // dane do utworzenia pytań
     private String name, lastAnswerDate, userIdKey;
 
-    private Float percentOfAnswers;
+    private Float percentOfAnswersAll;
 
 
     @Override
@@ -60,11 +61,11 @@ public class QuestionActivity extends AppCompatActivity {
 
         // get data from previous Activity
         name = intent.getStringExtra("name");
-        doneQuestions = intent.getIntExtra("doneQuestions",0);
+        doneQuestionsAll = intent.getIntExtra("doneQuestionAll",0);
         userIdKey = intent.getStringExtra("userIdKey");
         maxQuestions = getIntent().getIntExtra("maxQuestions",3);
         category = getIntent().getStringExtra("category");
-
+        percentOfAnswersAll = getIntent().getFloatExtra("percentOfAnswers",0);
 
 
 
@@ -99,7 +100,8 @@ public class QuestionActivity extends AppCompatActivity {
                     intent.putExtra("category",category);
                     intent.putExtra("maxQuestions",maxQuestions);
                     intent.putExtra("doneQuestions",doneQuestions);
-                    intent.putExtra("percentOfAnswers",percentOfAnswers);
+                    intent.putExtra("doneQuestionAll",doneQuestionsAll);
+                    intent.putExtra("percentOfAnswersAll",percentOfAnswersAll);
                     intent.putExtra("name",name);
                     intent.putExtra("userIdKey",userIdKey);
 
@@ -134,7 +136,8 @@ public class QuestionActivity extends AppCompatActivity {
                     intent.putExtra("category",category);
                     intent.putExtra("maxQuestions",maxQuestions);
                     intent.putExtra("doneQuestions",doneQuestions);
-                    intent.putExtra("percentOfAnswers",percentOfAnswers);
+                    intent.putExtra("doneQuestionAll",doneQuestionsAll);
+                    intent.putExtra("percentOfAnswersAll",percentOfAnswersAll);
                     intent.putExtra("name",name);
                     intent.putExtra("userIdKey",userIdKey);
 
