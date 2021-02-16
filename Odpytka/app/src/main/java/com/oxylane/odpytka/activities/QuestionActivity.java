@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.oxylane.odpytka.Questions;
 import com.oxylane.odpytka.QuestionsManager;
 import com.oxylane.odpytka.R;
@@ -92,7 +94,9 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                YoYo.with(Techniques.Pulse)
+                        .duration(300)
+                        .playOn(goodButton);
 
                 if(licz== maxQuestions){
                     goodOrBadList.add(1);
@@ -130,6 +134,11 @@ public class QuestionActivity extends AppCompatActivity {
         badButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                YoYo.with(Techniques.Pulse)
+                        .duration(300)
+                        .playOn(badButton);
+
                 if(licz== maxQuestions){
                     goodOrBadList.add(0);
                     Intent intent = new Intent (getApplicationContext(),SummaryActivity.class);
