@@ -2,12 +2,16 @@ package com.oxylane.odpytka.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,6 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +34,8 @@ import com.oxylane.odpytka.Person;
 import com.oxylane.odpytka.dialogs.DialogAddName;
 import com.oxylane.odpytka.dialogs.DialogNumberPicker;
 import com.oxylane.odpytka.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,8 +163,8 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
 
             }
-
             @Override
+
             public void onCancelled(@NonNull DatabaseError error) {
                 onFirebaseLoadDone.OnFirebaseLoadFailed(error.getMessage());
             }
@@ -168,9 +176,6 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //pobieramy wybraną pozycje z listy
                 Person person = people.get(position);
-
-                //userIdKey = idKeyList.get(position);  // get idKey of spinner position
-
 
                 percentOfAnswers = person.getPercentOfAnswers();
                 doneQuestions = person.getDoneQuestions();
@@ -194,7 +199,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
                     details_tv.setText("Szczegóły "+ name);
                     percentageOfAnswers_tv.setText(percentOfAnswers.toString()+"%");
-                    doneQuestions_tv.setText(doneQuestions.toString()); //zwraca null
+                    doneQuestions_tv.setText(doneQuestions.toString());
                     lastAnswerData_tv.setText(lastAnswerDate);
                 }
 
@@ -203,7 +208,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                details_tv.setText("Wybierz osobę, aby poznać szczegóły");
+                details_tv.setText("Wybierz osobę, aby zobaczyć szczegóły");
                 rowDetails1.setVisibility(View.INVISIBLE);
                 rowDetails2.setVisibility(View.INVISIBLE);
                 rowDetails3.setVisibility(View.INVISIBLE);
@@ -215,6 +220,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         openNumberPickerDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 openDialogNumberPicker();
 
             }
@@ -224,18 +230,34 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),QuestionActivity.class);
-                intent.putExtra("category",category);
-                intent.putExtra("maxQuestions",maxQuestions);
-                intent.putExtra("percentOfAnswers",percentOfAnswers);
-                intent.putExtra("name",name);
-                intent.putExtra("userIdKey",userIdKey);
-                intent.putExtra("doneQuestionAll",doneQuestions);
+                
+                        if(name != null){
+                            Intent intent = new Intent(getApplicationContext(),QuestionActivity.class);
+                            intent.putExtra("category",category);
+                            intent.putExtra("maxQuestions",maxQuestions);
+                            intent.putExtra("doneQuestions",doneQuestions);
+                            intent.putExtra("percentOfAnswers",percentOfAnswers);
+                            intent.putExtra("name",name);
+                            intent.putExtra("userIdKey",userIdKey);
 
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(),"Musisz najpierw wybrać osobę do odpytki",Toast.LENGTH_SHORT).show();
 
-                startActivity(intent);
-                finish();
-            }
+                            // if spinner name is gone, call on click
+                            if(spinnerName.getVisibility()==View.GONE){
+                                newPerson_btn.callOnClick();
+                            }
+
+                            // anim spinner
+                            YoYo.with(Techniques.Shake)
+                                    .duration(1000)
+                                    .playOn(spinnerName);
+                        }
+
+                };
         });
 
         //back
@@ -256,17 +278,17 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
     private void openDialogAddName() {
         if(spinnerName.getVisibility()==View.VISIBLE){
 
+            rotateAnimation(newPerson_btn,"-");
             addNewPerson_et.setVisibility(View.VISIBLE);
             add_btn.setVisibility(View.VISIBLE);
             spinnerName.setVisibility(View.GONE);
-            newPerson_btn.setText("-");
 
         }
         else{
+            rotateAnimation(newPerson_btn,"+");
             addNewPerson_et.setVisibility(View.GONE);
             add_btn.setVisibility(View.GONE);
             spinnerName.setVisibility(View.VISIBLE);
-            newPerson_btn.setText("+");
         }
     }
 
@@ -288,10 +310,12 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
     @Override
     public void OnFirebaseLoadSuccess(List<Person> people) {
         this.people = people;
+
         //get all name
         List<String> names_list = new ArrayList<>();
         for(Person person:people)
             names_list.add(person.getName());
+
         //adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,names_list);
         spinnerName.setAdapter(adapter);
@@ -301,5 +325,44 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
     @Override
     public void OnFirebaseLoadFailed(String msg) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    //animation
+    private void rotateAnimation(final Button button, final String text){
+
+        final Animation rotateAnim = new RotateAnimation(0,360,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        rotateAnim.setDuration(300);
+
+        button.startAnimation(rotateAnim);
+
+        rotateAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                YoYo.with(Techniques.FadeInLeft)
+                        .duration(1000)
+                        .playOn(addNewPerson_et);
+                YoYo.with(Techniques.FadeInLeft)
+                        .duration(1000)
+                        .playOn(add_btn);
+                YoYo.with(Techniques.FadeInLeft)
+                        .duration(1000)
+                        .playOn(spinnerName);
+
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                animation.setFillAfter(true);
+                button.setText(text);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+
+
+        });
     }
 }

@@ -69,7 +69,7 @@ public class SummaryActivity extends AppCompatActivity {
             percentOfAnswers = (float) percent;
         }
 
-        endText.setText("Odpytka osoby "+name+" zakończona");
+        endText.setText("Odpytka osoby "+ name +" zakończona");
         percentText.setText(percent+"%");
         doneQuestions=doneQuestionsAll+maxQuestions;
 
