@@ -14,7 +14,7 @@ public class StartActivity extends AppCompatActivity {
 
     private TextView worker_category_tv, manager_category_tv;
 
-    private Button exit_btn;
+
     private String category;
 
 
@@ -26,7 +26,7 @@ public class StartActivity extends AppCompatActivity {
         worker_category_tv = (TextView) findViewById(R.id.worker_category_tv);
         manager_category_tv = (TextView) findViewById(R.id.manager_category_tv);
 
-        exit_btn = (Button) findViewById(R.id.exit_btn);
+
 
         worker_category_tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +35,7 @@ public class StartActivity extends AppCompatActivity {
                 category = worker_category_tv.getText().toString();
                 intent.putExtra("category",category);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -49,15 +49,9 @@ public class StartActivity extends AppCompatActivity {
                 intent.putExtra("category",category);
 
                 startActivity(intent);
-                finish();
+
             }
         });
 
-        exit_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 }

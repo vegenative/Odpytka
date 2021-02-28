@@ -241,7 +241,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
                             intent.putExtra("userIdKey",userIdKey);
 
                             startActivity(intent);
-                            finish();
+
                         }
                         else {
                             Toast.makeText(getApplicationContext(),"Musisz najpierw wybrać osobę do odpytki",Toast.LENGTH_SHORT).show();
@@ -266,7 +266,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),StartActivity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 

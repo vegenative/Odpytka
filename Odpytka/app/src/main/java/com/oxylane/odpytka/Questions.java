@@ -4,83 +4,56 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Questions {
-    ArrayList<String> questionsAll = new ArrayList<>();
-    ArrayList<String> answersAll = new ArrayList<>();
+    private ArrayList<String> questionsAll = new ArrayList<>();
+    private ArrayList<String> answersAll = new ArrayList<>();
     public Questions(){
         questionsAll.add("Skąd będę wiedział, że rozpoczyna się ewakuacja?");
-        questionsAll.add("W jaki sposób dowiemy się o zmianie miejsca Punktu Zbiórki w przypadku pożaru w sąsiedztwie budynku, katastrofy lotniczej w obrębie budynku, katastrofy chemicznej itp.? ");
-        questionsAll.add("Rozwiń skrót ROP i opisz jego działanie ");
-        questionsAll.add("Jakie czynności/zadania należy wykonać przed przywróceniem sklepu do normalnej działalności po ewakuacji?");
-        questionsAll.add("Jak należy reagować w przypadku podejrzenia podłożenia ładunku wybuchowego (może to być podejrzana torba, plecak, paczka) w Naszym sklepie? ");
-        questionsAll.add("Co zrobisz w przypadku kontaktu z mediami (dziennikarz prosi Ciebie o udzielenie informacji drogą mailową, telefoniczną lub bezpośrednio)?");
-        questionsAll.add("Co zrobić w przypadku wykrycia wadliwych kartuszy z gazem?");
-        questionsAll.add("Co to jest identyfikowalność, dlaczego jest ważna i jaki mamy cel?");
-        questionsAll.add("Opisz procedurę REACH, gdy klient zadaje pytanie na temat obecności substancji chemicznych i biobójczych w naszych produktach.");
-        questionsAll.add("Co zrobię kiedy mam do czynienia z niebezpiecznym / agresywnym klientem?");
-        questionsAll.add("Jak zachować się podczas napadu?");
-        questionsAll.add("Jak zachować się podczas ataku terrorystycznego?");
-        questionsAll.add("Co robię kiedy zauważę, że klient kradnie produkt, bądź ściąga zabezpieczenie?");
-        questionsAll.add("Co zrobię gdy widzę mdlejącą osobę, wypadek?");
-        questionsAll.add("Co to jest PBS i jak często powinien być robiony oraz za pomocą jakiego narzędzia?");
-        questionsAll.add("Kiedy możesz wejść na halę sprzedaży, gdy sklep nie jest jeszcze otwarty dla klientów?");
-        questionsAll.add("Co zawiera się w Obchodzie Bezpieczeństwa Sektora (OBS) i w jakim narzędziu należy go wykonać?");
-        questionsAll.add("Dlaczego obsługując klientów na kasach zawsze sprawdzamy kompletność i spójność rozmiarów produktów?");
-        questionsAll.add("Dlaczego, każdy pracownik pracuje na swoim loginie i wylogowuje się z komputerów?");
-        questionsAll.add("Dlaczego etykiety nie mogą być dostępne dla klientów? Co należy zrobić z wydrukowanymi etykietami?");
-        questionsAll.add("Jak postępować w przypadku paczki międzysklepowej (intermag) wysłanej z rozbieżnościami?");
-        questionsAll.add("Co musisz zrobić niezwłocznie po napadzie?");
-        questionsAll.add("Ile stref ewakuacji posiadamy?");
-        questionsAll.add("Co muszę zrobić gdy kończę zmianę lub schodzę na przerwę i jestem przewodnikiem strefy?");
-        questionsAll.add("Jaka jest rola pracownika POK podczas EWAKUACJI?");
-        questionsAll.add("Jaka jest rola EPP podczas EWAKUACJI?");
-        questionsAll.add("Jaka jest rola ŁĄCZNIKA podczas EWAKUACJI i kto może nim być?");
-        questionsAll.add("Jaka jest rola EPI podczas ewakuacji?");
-        questionsAll.add("Jaka jest rola przewodników stref (I, II, III, IV,)?");
-        questionsAll.add("Którędy ewakuujemy się ze sklepu oraz w jakie miejsce?");
-        questionsAll.add("Gdzie znajduje się ROP?");
-        questionsAll.add("Gdzie w Twojej strefie (tam gdzie najczęściej pracujesz) znajdują się gaśnice? ");
-        questionsAll.add("Gdzie w Twojej strefie (tam gdzie najczęściej pracujesz) znajdują się hydranty?");
-        questionsAll.add("Opisz procedurę REACH, kiedy ją stosujemy?");
-        questionsAll.add("Co zrobię kiedy mam do czynienia z niebezpiecznym / agresywnym klientem?");
-        questionsAll.add("Jak dostać się awaryjnie do POMIESZCZENIA ROZLICZEŃ?");
-        questionsAll.add("Kto wpuszcza pracowników przez drzwi ewakuacyjne nr 3 (drzwi dla personelu) przed otwarciem sklepu?");
-        questionsAll.add("Kiedy należy wykonać OBS?");
-        questionsAll.add("Czym jest hermetyczność sklepu?");
-        questionsAll.add("Jakie obowiązują zasady podczas przyjmowania dostawy? O czym należy pamiętać? Jakie czynności powinny być wykonane?");
-        questionsAll.add("Dlaczego każda szafka pracownicza musi być zamykana na klucz?");
-        questionsAll.add(" Ile dni ma klient na zwrot sprzętu ochrony indywidualnej (kask, sprzęt wspinaczkowy)?");
-        questionsAll.add("W jaki sposób odbywa się transport kasetki z pieniędzmi z linii kas do sejfu?");
-        questionsAll.add("Ile pieniędzy powinno się maksymalnie znajdować w kasetce na kasie? Co zrobić z nadmiarem pieniędzy w kasetce?");
-        questionsAll.add("Jak się zachowasz, gdy usłyszysz, że w sklepie jest napad? Dzwonisz po pomoc?");
-        questionsAll.add("O czym mówi zasada NISKIEGO PROFILU?");
-        questionsAll.add("Wymień różnice pomiędzy procedurami NAPAD-ATAK TERRORYSTYCZNY - ATAK BOMBOWY. ");
-
         answersAll.add("Słyszę komunikat głosowy: UWAGA, UWAGA w obiekcie wykryto zagrożenie, prosimy kierować się do najbliższego wyjścia ewakuacyjnego i podporządkować się poleceniom personelu sklepu Dodatkowo zapali się dioda na tablicy synoptycznej nad serwisem.");
+
+        questionsAll.add("W jaki sposób dowiemy się o zmianie miejsca Punktu Zbiórki w przypadku pożaru w sąsiedztwie budynku, katastrofy lotniczej w obrębie budynku, katastrofy chemicznej itp.? ");
         answersAll.add("Kierownik Dyżurny poinformuje o zmianie miejsca PUNKTU ZBIÓRKI przez mikrofon POKu.");
+
+        questionsAll.add("Rozwiń skrót ROP i opisz jego działanie ");
         answersAll.add("-Ręczny Ostrzegacz POŻAROWY!\n" +
                 "-Po zbiciu szybki i wciśnięciu przycisku wysyła sygnał bezpośrednio do Straży Pożarnej o pożarze w sklepie.\n" +
                 "-Użyję go gdy widzę zagrożenie związane z pożarem, zawaleniem, porażeniem itp.");
+
+        questionsAll.add("Jakie czynności/zadania należy wykonać przed przywróceniem sklepu do normalnej działalności po ewakuacji?");
         answersAll.add("DORADCY SPORTOWI:\n" +
                 "- wykonanie Obchodu Bezpieczeństwa Sektora (OBS)");
+
+        questionsAll.add("Jak należy reagować w przypadku podejrzenia podłożenia ładunku wybuchowego (może to być podejrzana torba, plecak, paczka) w Naszym sklepie? ");
         answersAll.add("Jeżeli zauważyłeś podejrzany przedmiot poinformuj o tym DYŻURNEGO\n" +
                 "-DYŻURNY PODEJMUJE DECYZJĘ O EWAKUACJI\n" +
                 "-W przypadku otrzymania telefonicznej informacji na temat ładunku wybuchowego należy niezwłocznie rozpocząć procedurę ewakuacji\n" +
                 "-DYŻURNY ustala nowe miejsce Punktu Zbiórki za pomocą MIKROFONU w POK.");
+
+        questionsAll.add("Co zrobisz w przypadku kontaktu z mediami (dziennikarz prosi Ciebie o udzielenie informacji drogą mailową, telefoniczną lub bezpośrednio)?");
         answersAll.add("- informujesz dziennikarza, że nie jesteś uprawniony do udzielenia jakichkolwiek informacji\n" +
                 "- jeżeli dziennikarz upiera się aby przeprowadzić z Tobą wywiad spisujesz wraz z Nim notatkę z kontaktu z dziennikarzem\n" +
                 "- prześlij dane kontaktowe, temat lub notatkę do Rzecznika Prasowego (Wojciech Kozłowski)");
+
+        questionsAll.add("Co zrobić w przypadku wykrycia wadliwych kartuszy z gazem?");
         answersAll.add("- niezwłocznie wynieść kartusz w wyznaczone, zacienione, niedostępne dla postronnych miejsce na zewnatrz budynku (najlepiej pomieszczenie z pojemnikami na śmieci) gdzie pojemnik bedzie odłożony do całkowitego jego opróżnienia. Miejsce to musi byc wentylowane aby była cyrkulacja powietrza- do 48h (dni robocze) firma odbiera wadliwy produkt - wysłać e-mail: reklamacje@sat.poznan.pl; grzegorz.krawczyk@sat.poznan.pl");
+
+        questionsAll.add("Co to jest identyfikowalność, dlaczego jest ważna i jaki mamy cel?");
         answersAll.add("Jest to możliwość kontaktu z klientami, robiącymi u nas zakupy, szczególnie ważna przy produktach, których\n" +
                 "ewentualna wada może wpłynąć na bezpieczeństwo użytkowników (np. rowery, bieżnie).\n" +
                 "\n" +
                 "Możemy ją uzyskać wyrabiając Kartę Decathlon lub wpisując kontakt do klienta bezpośrednio na kasie.\n" +
                 "\n" +
                 "Cel to 100%");
+
+        questionsAll.add("Opisz procedurę REACH, gdy klient zadaje pytanie na temat obecności substancji chemicznych i biobójczych w naszych produktach.");
         answersAll.add("Piszemy wiadomość pod adres reach@decathlon.com z zapytaniem o skład produktu.");
+
+        questionsAll.add("Co zrobię kiedy mam do czynienia z niebezpiecznym / agresywnym klientem?");
         answersAll.add("-przekazuję informację do DYŻURNEGO\n" +
                 "-staram się uspokoić rozmowę\n" +
                 "-nigdy nie zostaję w pojedynkę z niebezpiecznym / agresywnym klientem\n" +
                 "-staram się wycofać z rozmowy");
+
+        questionsAll.add("Jak zachować się podczas napadu?");
         answersAll.add("Jedno co musi być zapamiętane to, że napad zawsze jest przemyślanym działaniem, co oznacza, że sprawcy najpierw odwiedzają sklep. Następnie sprawcy zrobią analizę, ocenią ryzyko i opierając się na wnioskach podejmą decyzję czy dokonać napadu.\n" +
                 "\n" +
                 "Są dwa typu napadów\n" +
@@ -96,6 +69,8 @@ public class Questions {
                 "-Złodzieje będą chcieli by zabrać ich do sejfu i będą chcieć go otworzyć, co jest niemożliwe. Więc będzie im trzeba wytłumaczyć, spokojnie, że nie ma możliwości otworzenia sejfu. Nie stawaj im na drodze ale wskaż sygnalizację (brak klucza w sklepie do sejfu) i jasno wytłumacz, że nie masz możliwości otworzenia sejfu.\n" +
                 "-Jeżeli złodzieje zapytają o zawartość szafy z pieniędzmi (sejf dyżurny) lub o pieniądze z kas, daj im je bez zwłoki\n" +
                 "-Jak tylko przestępcy opuszczą sklep zadzwoń na policję i po karetkę. W tym samym czasie rozpocznij Procedurę ZARZĄDZANIA KRYZYSOWEGO");
+
+        questionsAll.add("Jak zachować się podczas ataku terrorystycznego?");
         answersAll.add("Atak terrorystyczny jest zaplanowanym działaniem mającym na celu tylko i wyłącznie niesienie ŚMIERCI\n" +
                 "ludzi dotkniętych ATAKIEM. Terroryści nie będą żądali żadnych dóbr. Pragną tylko zabijać.\n" +
                 "\n" +
@@ -123,20 +98,30 @@ public class Questions {
                 "- Nie rozpowszechniaj informacji o interwencji służ porządkowych\n" +
                 "- Nie rozpowszechniaj żadnych niepotwierdzonych informacji w Internecie i na portalach\n" +
                 "społecznościowych.");
+
+        questionsAll.add("Co robię kiedy zauważę, że klient kradnie produkt, bądź ściąga zabezpieczenie?");
         answersAll.add("-informuję ochronę lub kierownika dyżurnego\n" +
                 "-traktuję go jak normalnego klienta (twoja obecność jest najskuteczniejszym odstraszeniem go od kradzieży)\n" +
                 "-nie krzyczę „UWAGA ZŁODZIEJ”\n" +
                 "-nie wybiegam za złodziejem ze sklepu");
+
+        questionsAll.add("Co zrobię gdy widzę mdlejącą osobę, wypadek?");
         answersAll.add("1. Zabezpieczam miejsce by kolejnej osobie nie ucierpiały\n" +
                 "2. Odgradzam alejkę by zapewnić komfort poszkodowanej osoby\n" +
                 "3. Wzywam kierownika dyżurnego bądź EPP\n" +
                 "4. NIGDY NIE ZOSTAWIAM POSZKODOWANEJ OSOBY SAMEJ (BEZ OPIEKI)");
+
+        questionsAll.add("Co to jest PBS i jak często powinien być robiony oraz za pomocą jakiego narzędzia?");
         answersAll.add("Podstawy bezpieczeństwa sektora.\n" +
                 "\n" +
                 "PBS robiony minimum 2x do roku + po każdej większej przebudowie.\n" +
                 "\n" +
                 "Korzystamy z narzędzia wbudowanego w explotool.pl");
+
+        questionsAll.add("Kiedy możesz wejść na halę sprzedaży, gdy sklep nie jest jeszcze otwarty dla klientów?");
         answersAll.add("W momencie kiedy DYŻURNY wróci z obchodu bezpieczeństwa sklepu i wyda jasny komunikat, np. \"Można bezpiecznie wejść na halę sprzedaży\".");
+
+        questionsAll.add("Co zawiera się w Obchodzie Bezpieczeństwa Sektora (OBS) i w jakim narzędziu należy go wykonać?");
         answersAll.add("Obchodzie Bezpieczeństwa Sektora wykonujemy codziennie w narzędziu explotool.pl\n" +
                 "\n" +
                 "Każda strefa posiada swoje obszary m.in.:\n" +
@@ -147,27 +132,43 @@ public class Questions {
                 "-Hantle i ketle są zabezpieczone przed zsunięciem z regałów.\n" +
                 "-Wszystkie łuki są zabezpieczone przed użyciem.\n" +
                 "-Noże są zabezpieczone w oryginalnych opakowaniach lub w gablocie.");
+
+        questionsAll.add("Dlaczego obsługując klientów na kasach zawsze sprawdzamy kompletność i spójność rozmiarów produktów?");
         answersAll.add("-aby uchronić się przed nieuczciwymi klientami np. Namiot w cenie 4000 zł zapakowany w pokrowiec namiotu za 2000zł\n" +
                 "-ograniczyć straty rozparowanych produktów np. rozmiar 39 lewego buta i 40 prawego\n" +
                 "-aby klient był zadowolony");
+
+        questionsAll.add("Dlaczego, każdy pracownik pracuje na swoim loginie i wylogowuje się z komputerów?");
         answersAll.add("Aby uniknąć oszustw ze strony nieuczciwych klientów oraz pracowników.");
+
+        questionsAll.add("Dlaczego etykiety nie mogą być dostępne dla klientów? Co należy zrobić z wydrukowanymi etykietami?");
         answersAll.add("Etykiety powinny być niedostępne dla klientów aby ograniczyć sytuacje przyklejenia ich na produkty aby dokonać oszustwa.\n" +
                 "\n" +
                 "Każda wydrukowana etykieta powinna być niezwłocznie przyklejona na produkt. Nienaklejone etykiety muszą zostać zniszczone i wyrzucone do kosza.");
+
+        questionsAll.add("Jak postępować w przypadku paczki międzysklepowej (intermag) wysłanej z rozbieżnościami?");
         answersAll.add("-kontakt ze sklepem wysyłającym\n" +
                 "-inwentaryzujemy towar i sprawdzamy czy nie było sprzedaży z ujemnym stanem zapasu\n" +
                 "-weryfikacja przesyłki\n" +
                 "-ewentualna korekta ilości na minus\n" +
                 "\n" +
                 "STARAMY SIĘ WYJAŚNIĆ ROZBIEŻNOŚĆ ZE SKLEPEM WYSYŁAJĄCYM");
+
+        questionsAll.add("Co musisz zrobić niezwłocznie po napadzie?");
         answersAll.add("-uspokajam klientów i pracowników na tyle na ile jest to możliwe. Jeżeli jakiś pracownik lub klient wymaga pomocy zabierz go do ustronnego miejsca. Policja powinna przybyć ze specjalną jednostką, która pomaga ofiarom będącym w szoku\n" +
                 "-proszę klientów, aby pozostali w sklepie do czasu przybycia policji, jeżeli nie jest to możliwe proszę o pozostawienie ich danych adresowych i numeru telefonu\n" +
                 "\n" +
                 "W przypadku, gdy kontaktuje się z Tobą prasa, zastosuj PROCEDURĘ ZARZĄDZANIA KRYZYSOWEGO „Kontakt z Mediami”.\n" +
                 "Nie udzielaj żadnych informacji.");
-        answersAll.add("Wymień jakie pomieszczenia i działy znajdują się w każdej z nich. 4 strefy, 1. od wejścia do kurtyny świetlnej, 2. do rogu sklepu, 3. rowery, 4 turystyka");
+
+        questionsAll.add("Ile stref ewakuacji posiadamy? Wymień jakie pomieszczenia i działy znajdują się w każdej z nich.");
+        answersAll.add(" 4 strefy, 1. od wejścia do kurtyny świetlnej, 2. do rogu sklepu, 3. rowery, 4 turystyka");
+
+        questionsAll.add("Co muszę zrobić gdy kończę zmianę lub schodzę na przerwę i jestem przewodnikiem strefy?");
         answersAll.add("-kiedy kończę pracę przekazuje strefę innej osobie i zamieniam nazwiska na tablicy obecności\n" +
                 "-kiedy schodzę na przerwę przekazuję strefę innej osobie. Po powrocie z przerwy odbieram strefę.");
+
+        questionsAll.add("Jaka jest rola pracownika POK podczas EWAKUACJI?");
         answersAll.add("PRACOWNIK POK: Pracownik Decathlon, pełniący zmianę na obsłudze kas.\n" +
                 "\n" +
                 "ALARM I STOPNIA (syrena)\n" +
@@ -177,11 +178,15 @@ public class Questions {
                 "ALARM II STOPNIA (komunikat głosowy)\n" +
                 "- Blokuje informatycznie kasy.\n" +
                 "- zabiera listę noproblem, - ewakuuje salę zebrań, pomieszczenia rozliczeń i pomieszczenie przesłuchań");
+
+        questionsAll.add("Jaka jest rola EPP podczas EWAKUACJI?");
         answersAll.add("ALARM I STOPNIA (syrena) biegnie do POK z apteczką\n" +
                 "ALARM II STOPNIA (komunikat głosowy)\n" +
                 "czeka na decyzję kieronika dyżurnego, udziela pomocy poszkodowanym, jeżeli zaistnieje taka konieczność\n" +
                 "\n" +
                 "UWAGA!!! Jeśli EPP jest Przewodnikiem Strefy to w pierwszej kolejności ewakuuje swoją strefę");
+
+        questionsAll.add("Jaka jest rola ŁĄCZNIKA podczas EWAKUACJI i kto może nim być?");
         answersAll.add("ŁĄCZNIK STREFY: Pracownik Decathlon lub klient, który jako pierwsza dociera do drzwi ewakuacyjnych podczas Alarmu II Stopnia. Przewodnik Strefy może również wyznaczyć do tej roli klienta lub konkretnego pracownika.\n" +
                 "\n" +
                 "ALARM I STOPNIA (syrena)\n" +
@@ -193,6 +198,8 @@ public class Questions {
                 "d) Wychodzi ze Sklepu wraz z Przewodnikiem strefy.\n" +
                 "e) Udaje się do Punktu Zbiórki.\n" +
                 "f) Potwierdza swoją obecność pracownikowi kierownikowi dyżurnemu.");
+
+        questionsAll.add("Jaka jest rola EPI podczas ewakuacji?");
         answersAll.add("EPI: Pracownik Decathlon po ukończeniu szkolenia i otrzymaniu zaświadczenia.\n" +
                 "a) Jeżeli dostrzegł pożar możliwy do ugaszenia przystępuje do akcji gaśniczej.\n" +
                 "b) Kontynuje bądź przerywa akcję gaśniczą.\n" +
@@ -200,6 +207,8 @@ public class Questions {
                 "d) Potwierdza swoją obecność kier. dyż.\n" +
                 "UWAGA!!! Jeśli EPI jest Przewodnikiem Strefy to w pierwszej kolejności\n" +
                 "ewakuuje swoją strefę.");
+
+        questionsAll.add("Jaka jest rola przewodników stref (I, II, III, IV,)?");
         answersAll.add("PRZEWODNIK STREFY: Pracownik Decathlon oznaczony na tablicy obecności przez KIEROWNIKA DYŻURNEO jako PRZEWODNIK STREFY: I,II,III,IV.\n" +
                 "\n" +
                 "ALARM I STOPNIA (syrena)\n" +
@@ -210,10 +219,21 @@ public class Questions {
                 "b) Wraz z Łącznikiem, jako ostatni opuszcza swoja strefę ewakuacji i przymyka drzwi (ograniczając dostęp tlenu) na zakładkę (aby umożliwić dostęp z zewnątrz dla służb ratowniczych).\n" +
                 "c) Udaje się do Punktu Zbiórki.\n" +
                 "d) Potwierdza swoją obecność kier. dyz. e) Przekazuje raport Kierownikowi Dyżurnemu na temat ewakuacji swojej strefy.");
+
+        questionsAll.add("Którędy ewakuujemy się ze sklepu oraz w jakie miejsce?");
         answersAll.add("Najbliższymi drzwiami ewakuacyjnymi do punktu zbiórki ewakuacji, który znajduje się na parkingu (opisz dokładnie). Punkt jest oznaczony zielonym znakiem.");
+
+        questionsAll.add("Gdzie znajduje się ROP?");
         answersAll.add("przy każdych drzwiach ewakuacyjnych oraz przy POK");
+
+        questionsAll.add("Gdzie w Twojej strefie (tam gdzie najczęściej pracujesz) znajdują się gaśnice? ");
         answersAll.add("??");
+
+        questionsAll.add("Gdzie w Twojej strefie (tam gdzie najczęściej pracujesz) znajdują się hydranty?");
         answersAll.add("rowery, gry, fitness, oxelo, magazyn, social i serwis");
+
+        // powtórka?
+        questionsAll.add("Opisz procedurę REACH, kiedy ją stosujemy?");
         answersAll.add("Kiedy klient tylko zadaje pytanie na temat obecności substancji chemicznych i biobójczych w naszych produktach.\n" +
                 "Co należy zrobić:\n" +
                 "- piszemy wiadomość pod adres reach@decathlon.com z zapytaniem o skład produktu\n" +
@@ -228,14 +248,27 @@ public class Questions {
                 "- zapakowaną połowę produktu należy wysłać do centrali z widocznym dopiskiem reakcja alergiczna!\n" +
                 "- powiadamiamy dyrektora sklepu\n" +
                 "-odpowiedź otrzymujemy w ciągu 45 dni");
+
+        // powtórka?
+        questionsAll.add("Co zrobię kiedy mam do czynienia z niebezpiecznym / agresywnym klientem?");
         answersAll.add("-przekazuję informację do DYŻURNEGO\n" +
                 "-staram się uspokoić rozmowę\n" +
                 "-nigdy nie zostaję w pojedynkę z niebezpiecznym / agresywnym klientem\n" +
                 "-staram się wycofać z rozmowy");
+
+        questionsAll.add("Jak dostać się awaryjnie do POMIESZCZENIA ROZLICZEŃ?");
         answersAll.add("zbij szybkę w skrzynce obok drzwi do POMIESZCZENIA ROZLICZEŃ i pobierz z niego klucz otwierający drzwi.");
+
+        questionsAll.add("Kto wpuszcza pracowników przez drzwi ewakuacyjne nr 3 (drzwi dla personelu) przed otwarciem sklepu?");
         answersAll.add("kierownik dyżurny lub ochroniarz");
+
+        questionsAll.add("Kiedy należy wykonać OBS?");
         answersAll.add("OBS wykonujemy codziennie na każdym sektorze przed rozłożeniem dostawy w narzędziu explotool.pl");
+
+        questionsAll.add("Czym jest hermetyczność sklepu?");
         answersAll.add("Hermetyczność: produkty sklepowe nie mogą wyjść za strefę poza bramkami antykradzieżowymi bez uregulowania należności na kasie, okazujemy swoją torbę/plecak pracownikowi ochrony/dyżurnemu po zakończeniu pracy, sprawdzanie dostawy, zazbrajanie sklepu w odpowiednich porach");
+
+        questionsAll.add("Jakie obowiązują zasady podczas przyjmowania dostawy? O czym należy pamiętać? Jakie czynności powinny być wykonane?");
         answersAll.add("- logistyk własnoręcznie ściąga plombę,\n" +
                 "-żaden pracownik Decathlon nie może wchodzić na ciężarówkę,\n" +
                 "-kierowca nie może pozostać sam w strefie magazynu,\n" +
@@ -243,13 +276,25 @@ public class Questions {
                 "-palety na sklepie rozkładane są pojedynczo,\n" +
                 "-palety są przyjmowane w systemie za pomocą aplikacji na smartfonie,\n" +
                 "-ilość paczek na palecie jest liczona (stan fizyczny = stan w stores.com).");
+
+        questionsAll.add("Dlaczego każda szafka pracownicza musi być zamykana na klucz?");
         answersAll.add("Ponieważ wymagają od Nas tego warunki BHP.");
+
+        questionsAll.add(" Ile dni ma klient na zwrot sprzętu ochrony indywidualnej (kask, sprzęt wspinaczkowy)?");
         answersAll.add("14 dni na zwrot jeżeli produkt posiada fabryczne metki oraz naklejki z rozmiarem i nie nosi śladów używania.");
+
+        questionsAll.add("W jaki sposób odbywa się transport kasetki z pieniędzmi z linii kas do sejfu?");
         answersAll.add("Transport odbywa się zawsze przez pracownika POK pod opieką ochroniarza, który towarzyszy jej od kasy aż do drzwi sejfu.");
+
+        questionsAll.add("Ile pieniędzy powinno się maksymalnie znajdować w kasetce na kasie? Co zrobić z nadmiarem pieniędzy w kasetce?");
         answersAll.add("Maksymalnie 2000zł, nadmiar pieniędzy powinien być deponowany w sejfie. (ważne, żeby pracownik miał świadomość, żeby dać znać POKówce, kiedy jest dużo kasy w kasetce)");
+
+        questionsAll.add("Jak się zachowasz, gdy usłyszysz, że w sklepie jest napad? Dzwonisz po pomoc?");
         answersAll.add("Zachowuję zasadę \"NISKI PROFIL\".\n" +
                 "Nie wciskam ROPa ani nie dzwonię po pomoc.\n" +
                 "Nie zgrywam bohatera");
+
+        questionsAll.add("O czym mówi zasada NISKIEGO PROFILU?");
         answersAll.add("TRZYMAJ GŁOWĘ NISKO, RÓB WSZYSTKO CZEGO ZARZĄDA ZŁODZIEJ, ZERO HEROIZMU, NIE OPIERAJ SIĘ ŻĄDANIOM ZŁODZIEJA\n" +
                 "\n" +
                 "-jeżeli osoba wystraszona przez rabusi nie potrafi odpowiedzieć na ich żądania wtedy kierownik dyżurny musi być dostępny niezwłocznie\n" +
@@ -258,6 +303,8 @@ public class Questions {
                 "-zabierz wszystkich z daleka od strefy gdzie ma miejsce napad i zapobiegaj opuszczaniu sklepu przez klientów wyjściami ewakuacyjnymi (alarm drzwi ewakuacyjnych może doprowadzić do paniki przestępców i negatywnych tego konsekwencji)\n" +
                 "-złodzieje chcą tylko jednej rzeczy, zdobycia tylu pieniędzy ile to możliwe w najkrótszym możliwym czasie. Są pod wpływem dużego stresu i chcą działać szybko. Będą prosić by zabrać ich do sejfu i będą chcieć go otworzyć, co jest niemożliwe. Więc będzie im trzeba wytłumaczyć, spokojnie, że nie ma możliwości otworzenia sejfu. Nie stawaj im na drodze ale wskaż sygnalizację (brak klucza w sklepie do sejfu) i jasno wytłumacz, że nie masz możliwości otworzenia sejfu.\n" +
                 "-jeżeli złodzieje zapytają o zawartość szafy z pieniędzmi (sejf dyżurny) lub o pieniądze z kas, daj im je bez zwłoki");
+
+        questionsAll.add("Wymień różnice pomiędzy procedurami NAPAD-ATAK TERRORYSTYCZNY - ATAK BOMBOWY. ");
         answersAll.add("1. Podczas napadu obowiązuje zachowanie \"niskiego profilu\" gdziekolwiek jesteś na sklepie/magazynie, czy napastnik nas widzi czy też nie. Zawsze zachowujemy niski profil i nie zawiadamiamy żadnych służb.\n" +
                 "2. Przy ataku terrorystycznym powinniśmy uciekać w przeciwnym kierunku co sprawca - jeżeli mamy taką możliwość. Jeżeli nie to chowamy się w nie dostępnym miejscu. Zawiadamiamy służby o zaistniałej sytuacji.\n" +
                 "3. Atak bombowy - jeżeli otrzymamy taką informację podejmujemy niezwłocznie ewakuację.");

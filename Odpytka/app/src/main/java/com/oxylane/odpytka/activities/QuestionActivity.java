@@ -2,6 +2,7 @@ package com.oxylane.odpytka.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -55,7 +56,6 @@ public class QuestionActivity extends AppCompatActivity {
         answerText = findViewById(R.id.answerText);
         goodButton = findViewById(R.id.goodButton);
         badButton = findViewById(R.id.badButton);
-        backButton = findViewById(R.id.backButton);
         goodOrBadList = new ArrayList<Integer>();
 
 
@@ -73,7 +73,7 @@ public class QuestionActivity extends AppCompatActivity {
 
 
 
-        if (category.equals("Pracownik"))
+        if (category.equals("Dyżurny"))
         {
             questionsAndAnswersM = new QuestionsManager();
             questions = questionsAndAnswersM.getList(maxQuestions);
@@ -87,7 +87,7 @@ public class QuestionActivity extends AppCompatActivity {
          }
 
 
-        //co to?
+
         setQuestion(questions, doneQuestions);
 
         goodButton.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +95,7 @@ public class QuestionActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 YoYo.with(Techniques.Pulse)
-                        .duration(300)
+                        .duration(500)
                         .playOn(goodButton);
 
                 if(licz== maxQuestions){
@@ -136,7 +136,7 @@ public class QuestionActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 YoYo.with(Techniques.Pulse)
-                        .duration(300)
+                        .duration(500)
                         .playOn(badButton);
 
                 if(licz== maxQuestions){
@@ -169,7 +169,9 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
+
+
+        /*backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(licz==1){
@@ -184,6 +186,8 @@ public class QuestionActivity extends AppCompatActivity {
 
             }
         });
+
+         */
 
 
 
