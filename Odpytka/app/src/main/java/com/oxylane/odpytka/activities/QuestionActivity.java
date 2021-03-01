@@ -63,7 +63,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         // get data from previous Activity
         name = intent.getStringExtra("name");
-        doneQuestionsAll = intent.getIntExtra("doneQuestionAll",0);
+        doneQuestionsAll = intent.getIntExtra("doneQuestionsAll",0);
         userIdKey = intent.getStringExtra("userIdKey");
         maxQuestions = getIntent().getIntExtra("maxQuestions",3);
         category = getIntent().getStringExtra("category");
@@ -102,9 +102,8 @@ public class QuestionActivity extends AppCompatActivity {
                     goodOrBadList.add(1);
                     Intent intent = new Intent (getApplicationContext(),SummaryActivity.class);
                     intent.putExtra("category",category);
-                    intent.putExtra("maxQuestions",maxQuestions);
                     intent.putExtra("doneQuestions",doneQuestions);
-                    intent.putExtra("doneQuestionAll",doneQuestionsAll);
+                    intent.putExtra("doneQuestionsAll",doneQuestionsAll);
                     intent.putExtra("percentOfAnswersAll",percentOfAnswersAll);
                     intent.putExtra("name",name);
                     intent.putExtra("userIdKey",userIdKey);
@@ -140,9 +139,8 @@ public class QuestionActivity extends AppCompatActivity {
                     goodOrBadList.add(0);
                     Intent intent = new Intent (getApplicationContext(),SummaryActivity.class);
                     intent.putExtra("category",category);
-                    intent.putExtra("maxQuestions",maxQuestions);
                     intent.putExtra("doneQuestions",doneQuestions);
-                    intent.putExtra("doneQuestionAll",doneQuestionsAll);
+                    intent.putExtra("doneQuestionsAll",doneQuestionsAll);
                     intent.putExtra("percentOfAnswersAll",percentOfAnswersAll);
                     intent.putExtra("name",name);
                     intent.putExtra("userIdKey",userIdKey);
