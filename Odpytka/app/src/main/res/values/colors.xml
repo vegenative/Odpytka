@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#008df2</color>
     <color name="colorPrimaryLight">#7cc8ff</color>
     <color name="colorWhite">#fff</color>
-    <color name="colorButtonGood">#0EF609</color>
-    <color name="colorButtonBad">#FD2323</color>
+    <color name="colorButtonGood">#84F5A4</color>
+    <color name="colorButtonBad">#F57E7E</color>
 </resources>
