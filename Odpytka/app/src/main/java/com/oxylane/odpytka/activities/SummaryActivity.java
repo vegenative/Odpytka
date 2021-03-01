@@ -53,7 +53,7 @@ public class SummaryActivity extends AppCompatActivity {
         percentOfAnswersAll = intent.getFloatExtra("percentOfAnswersAll",0);
         name = intent.getStringExtra("name");
         doneQuestions = intent.getIntExtra("doneQuestions",0);
-        doneQuestionsAll = intent.getIntExtra("doneQuestionAll",0);
+        doneQuestionsAll = intent.getIntExtra("doneQuestionsAll",0);
         good = intent.getIntExtra("good",0);
         userIdKey = intent.getStringExtra("userIdKey");
         category = intent.getStringExtra("category");
@@ -69,7 +69,7 @@ public class SummaryActivity extends AppCompatActivity {
             percentOfAnswers = (float) percent;
         }
 
-        endText.setText("Odpytka osoby "+ name +" zakończona");
+        endText.setText("Odpytka osoby "+name+" zakończona");
         percentText.setText(percent+"%");
         doneQuestions=doneQuestionsAll+maxQuestions;
 
@@ -80,6 +80,7 @@ public class SummaryActivity extends AppCompatActivity {
         reference.child("percentOfAnswers").setValue(percentOfAnswers);
         reference.child("doneQuestions").setValue(doneQuestions);
         reference.child("lastAnswerDate").setValue(lastAnswerDate);
+
 
 
 
