@@ -53,7 +53,6 @@ public class SummaryActivity extends AppCompatActivity {
         percentOfAnswersAll = intent.getFloatExtra("percentOfAnswersAll",0);
         name = intent.getStringExtra("name");
         doneQuestions = intent.getIntExtra("doneQuestions",0);
-        doneQuestionsAll = intent.getIntExtra("doneQuestionAll",0);
         good = intent.getIntExtra("good",0);
         userIdKey = intent.getStringExtra("userIdKey");
         category = intent.getStringExtra("category");
@@ -71,14 +70,14 @@ public class SummaryActivity extends AppCompatActivity {
 
         endText.setText("Odpytka osoby "+ name +" zakończona");
         percentText.setText(percent+"%");
-        doneQuestions=doneQuestionsAll+maxQuestions;
+        doneQuestionsAll=doneQuestions + maxQuestions;
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference(category).child(userIdKey);
 
 
         reference.child("percentOfAnswers").setValue(percentOfAnswers);
-        reference.child("doneQuestions").setValue(doneQuestions);
+        reference.child("doneQuestions").setValue(doneQuestionsAll);
         reference.child("lastAnswerDate").setValue(lastAnswerDate);
 
 

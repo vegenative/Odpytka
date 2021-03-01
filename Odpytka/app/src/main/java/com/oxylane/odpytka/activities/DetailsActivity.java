@@ -96,7 +96,6 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         // get category from previous activity
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
-        info_tv.setText("Wybierz szczegóły odpytki kategorii "+ category);
 
 
         //interface
@@ -186,17 +185,12 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
                 if(lastAnswerDate == null){
                     details_tv.setText("Podana osoba jeszcze nie została odpytana");
-                    rowDetails1.setVisibility(View.INVISIBLE);
-                    rowDetails2.setVisibility(View.INVISIBLE);
-                    rowDetails3.setVisibility(View.INVISIBLE);
 
                 }
                 else{
-                    rowDetails1.setVisibility(View.VISIBLE);
-                    rowDetails2.setVisibility(View.VISIBLE);
-                    rowDetails3.setVisibility(View.VISIBLE);
 
                     details_tv.setText("Szczegóły "+ name);
+
                     percentageOfAnswers_tv.setText(percentOfAnswers.toString()+"%");
                     doneQuestions_tv.setText(doneQuestions.toString());
                     lastAnswerData_tv.setText(lastAnswerDate);
@@ -208,9 +202,6 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 details_tv.setText("Wybierz osobę, aby zobaczyć szczegóły");
-                rowDetails1.setVisibility(View.INVISIBLE);
-                rowDetails2.setVisibility(View.INVISIBLE);
-                rowDetails3.setVisibility(View.INVISIBLE);
 
             }
         });
@@ -243,7 +234,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
                         }
                         else {
-                            Toast.makeText(getApplicationContext(),"Musisz najpierw wybrać osobę do odpytki",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Musisz najpierw wybrać osobę do odpytki",Toast.LENGTH_LONG).show();
 
                             // if spinner name is gone, call on click
                             if(spinnerName.getVisibility()==View.GONE){
@@ -252,21 +243,11 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
 
                             // anim spinner
                             YoYo.with(Techniques.Shake)
-                                    .duration(1000)
+                                    .duration(3000)
                                     .playOn(spinnerName);
                         }
 
                 };
-        });
-
-        //back
-        back_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),StartActivity.class);
-                startActivity(intent);
-
-            }
         });
 
     }

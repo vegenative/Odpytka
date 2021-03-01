@@ -122,10 +122,7 @@ public class QuestionActivity extends AppCompatActivity {
                 }else {
                     doneQuestions += 2;
                     licz += 1;
-
-
                     goodOrBadList.add(1);
-
                     setQuestion(questions, doneQuestions);
                 }
             }
