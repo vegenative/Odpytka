@@ -223,7 +223,7 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
                             Intent intent = new Intent(getApplicationContext(),QuestionActivity.class);
                             intent.putExtra("category",category);
                             intent.putExtra("maxQuestions",maxQuestions);
-                            intent.putExtra("doneQuestions",doneQuestions);
+                            intent.putExtra("doneQuestionsAll",doneQuestions);
                             intent.putExtra("percentOfAnswers",percentOfAnswers);
                             intent.putExtra("name",name);
                             intent.putExtra("userIdKey",userIdKey);
