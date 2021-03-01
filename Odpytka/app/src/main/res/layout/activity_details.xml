@@ -212,21 +212,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView">
 
-        <Button
-            android:id="@+id/back_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"
-
-            android:background="@drawable/button_rounded_white"
-            android:text="Cofnij" />
 
         <Button
             android:id="@+id/next_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_weight="1"
             android:background="@drawable/button_rounded_white"
             android:text="dalej" />

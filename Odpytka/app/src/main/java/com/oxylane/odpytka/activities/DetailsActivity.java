@@ -71,7 +71,6 @@ public class DetailsActivity extends AppCompatActivity implements DialogNumberPi
         //hooks
         openNumberPickerDialog = (Button) findViewById(R.id.openNumberSpinner);
         newPerson_btn = (Button) findViewById(R.id.newPerson_btn);
-        back_btn = (Button) findViewById(R.id.back_btn);
         next_btn = (Button) findViewById(R.id.next_btn);
         add_btn = (Button) findViewById(R.id.add_btn);
         add_btn.setVisibility(View.GONE);
