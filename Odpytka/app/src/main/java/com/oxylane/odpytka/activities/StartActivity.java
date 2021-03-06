@@ -11,7 +11,7 @@ import com.oxylane.odpytka.R;
 
 public class StartActivity extends AppCompatActivity {
 
-    private TextView worker_category_tv, manager_category_tv;
+    private TextView worker_category_tv, manager_category_tv,questionList_tv;
 
 
     private String category;
@@ -24,6 +24,7 @@ public class StartActivity extends AppCompatActivity {
 
         worker_category_tv = (TextView) findViewById(R.id.worker_category_tv);
         manager_category_tv = (TextView) findViewById(R.id.manager_category_tv);
+        questionList_tv = (TextView) findViewById(R.id.questionList_tv);
 
 
 
@@ -52,5 +53,12 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        questionList_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),QuestionListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
