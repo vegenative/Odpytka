@@ -79,7 +79,7 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/QuestionList_btn"
+            android:id="@+id/questionList_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_rounded_white"
